@@ -1,0 +1,17 @@
+mutation AddSpeaker {
+  addSpeaker(input: {
+    name: "Speaker Name"
+    bio: "Speaker Bio"
+    webSite: "http://speaker.website" }) {
+    speaker {
+      id
+    }
+  }
+}
+
+
+query GetSpeakerNames {
+  speakers {
+    name
+  }
+}
