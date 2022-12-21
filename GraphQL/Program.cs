@@ -1,3 +1,4 @@
+using ConferencePlanner.GraphQL.Attendees;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
 using ConferencePlanner.GraphQL.Sessions;
@@ -13,13 +14,17 @@ builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(options => opti
 builder.Services
     .AddGraphQLServer()
     .AddQueryType(d => d.Name("Query"))
-    .AddTypeExtension<SpeakerQueries>()
-    .AddTypeExtension<SessionQueries>()
-    .AddTypeExtension<TrackQueries>()
+        .AddTypeExtension<AttendeeQueries>()
+        .AddTypeExtension<SpeakerQueries>()
+        .AddTypeExtension<SessionQueries>()
+        .AddTypeExtension<TrackQueries>()
     .AddMutationType(d => d.Name("Mutation"))
-    .AddTypeExtension<SpeakerMutations>()
-    .AddTypeExtension<SessionMutations>()
-    .AddTypeExtension<TrackMutations>()
+        .AddTypeExtension<AttendeeMutations>()
+        .AddTypeExtension<SpeakerMutations>()
+        .AddTypeExtension<SessionMutations>()
+        .AddTypeExtension<TrackMutations>()
+    .AddSubscriptionType(d => d.Name("Subscription"))
+        .AddTypeExtension<SessionSubscriptions>()
     .AddType<AttendeeType>()
     .AddType<SessionType>()
     .AddType<SpeakerType>()
@@ -27,6 +32,7 @@ builder.Services
     .EnableRelaySupport()
     .AddFiltering()
     .AddSorting()
+    .AddInMemorySubscriptions()
     .AddDataLoader<SpeakerByIdDataLoader>()
     .AddDataLoader<SessionByIdDataLoader>();
 
@@ -34,6 +40,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => "A GraphQL API");
 
+app.UseWebSockets();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
