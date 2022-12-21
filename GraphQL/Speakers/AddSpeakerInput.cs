@@ -1,4 +1,4 @@
-namespace ConferencePlanner.GraphQL
+namespace GraphQL.Speakers
 {
     public record AddSpeakerInput(
         string Name,

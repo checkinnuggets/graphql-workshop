@@ -11,37 +11,37 @@ using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL.Types
 {
-    public class SpeakerType : ObjectType<Speaker>
+    public class TrackType : ObjectType<Track>
     {
-        protected override void Configure(IObjectTypeDescriptor<Speaker> descriptor)
+        protected override void Configure(IObjectTypeDescriptor<Track> descriptor)
         {
             descriptor
                 .ImplementsNode()
                 .IdField(t => t.Id)
-                .ResolveNode((ctx, id) => ctx.DataLoader<SpeakerByIdDataLoader>().LoadAsync(id, ctx.RequestAborted));
+                .ResolveNode((ctx, id) =>
+                    ctx.DataLoader<TrackByIdDataLoader>().LoadAsync(id, ctx.RequestAborted));
 
             descriptor
-                .Field(t => t.SessionSpeakers)
-                .ResolveWith<SpeakerResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
+                .Field(t => t.Sessions)
+                .ResolveWith<TrackResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
                 .UseDbContext<ApplicationDbContext>()
                 .Name("sessions");
         }
 
-        private class SpeakerResolvers
+        private class TrackResolvers
         {
             public async Task<IEnumerable<Session>> GetSessionsAsync(
-                Speaker speaker,
+                Track track,
                 [ScopedService] ApplicationDbContext dbContext,
                 SessionByIdDataLoader sessionById,
                 CancellationToken cancellationToken)
             {
-                int[] speakerIds = await dbContext.Speakers
-                    .Where(s => s.Id == speaker.Id)
-                    .Include(s => s.SessionSpeakers)
-                    .SelectMany(s => s.SessionSpeakers.Select(t => t.SessionId))
+                int[] sessionIds = await dbContext.Sessions
+                    .Where(s => s.Id == track.Id)
+                    .Select(s => s.Id)
                     .ToArrayAsync();
 
-                return await sessionById.LoadAsync(speakerIds, cancellationToken);
+                return await sessionById.LoadAsync(sessionIds, cancellationToken);
             }
         }
     }
