@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL
 {

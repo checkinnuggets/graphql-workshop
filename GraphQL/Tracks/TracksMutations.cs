@@ -1,8 +1,4 @@
-using System.Threading;
-using System.Threading.Tasks;
 using ConferencePlanner.GraphQL.Data;
-using HotChocolate;
-using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL.Tracks
 {

@@ -1,10 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
-using HotChocolate;
-using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {

@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;

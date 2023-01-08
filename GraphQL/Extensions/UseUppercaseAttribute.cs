@@ -1,4 +1,3 @@
-using HotChocolate.Types;
 using HotChocolate.Types.Descriptors;
 using System.Reflection;
 

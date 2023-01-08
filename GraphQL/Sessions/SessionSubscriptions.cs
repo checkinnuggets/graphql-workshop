@@ -1,9 +1,5 @@
-using System.Threading;
-using System.Threading.Tasks;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
-using HotChocolate;
-using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
