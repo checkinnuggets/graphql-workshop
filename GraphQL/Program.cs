@@ -9,9 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(options => options.UseSqlite("Data Source=conferences.db"));
+
+void DbContextOptions(DbContextOptionsBuilder options)
+{
+    options.UseSqlite("Data Source=conferences.db");
+    options.EnableSensitiveDataLogging();
+}
+
+builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);
+builder.Services.AddDbContext<ApplicationDbContext>(DbContextOptions);
 builder.Services
     .AddGraphQLServer()
+    .RegisterDbContext<ApplicationDbContext>()
     .AddQueryType(d => d.Name("Query"))
         .AddTypeExtension<AttendeeQueries>()
         .AddTypeExtension<SpeakerQueries>()

@@ -30,7 +30,7 @@ namespace ConferencePlanner.GraphQL.Types
         {
             public async Task<IEnumerable<Session>> GetSessionsAsync(
                 Track track,
-                [Service] ApplicationDbContext dbContext,
+                ApplicationDbContext dbContext,
                 SessionByIdDataLoader sessionById,
                 CancellationToken cancellationToken)
             {

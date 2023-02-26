@@ -29,9 +29,8 @@ namespace ConferencePlanner.GraphQL.Sessions
             return await trackById.LoadAsync(Session.Id, cancellationToken);
         }
 
-        [UseApplicationDbContext]
         public async Task<IEnumerable<Speaker>?> GetSpeakersAsync(
-            [Service] ApplicationDbContext dbContext,
+            ApplicationDbContext dbContext,
             SpeakerByIdDataLoader speakerById,
             CancellationToken cancellationToken)
         {
