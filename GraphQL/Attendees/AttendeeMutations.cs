@@ -2,6 +2,7 @@
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 using HotChocolate.Language;
+using HotChocolate.Subscriptions;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
@@ -50,6 +51,11 @@ namespace ConferencePlanner.GraphQL.Attendees
                 });
 
             await context.SaveChangesAsync(cancellationToken);
+
+            await eventSender.SendAsync(
+                "OnAttendeeCheckedIn_" + input.SessionId,
+                input.AttendeeId,
+                cancellationToken);
 
             return new CheckInAttendeePayload(attendee, input.SessionId);
         }
