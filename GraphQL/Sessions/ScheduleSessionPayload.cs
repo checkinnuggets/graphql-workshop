@@ -31,7 +31,7 @@ namespace ConferencePlanner.GraphQL.Sessions
 
         [UseApplicationDbContext]
         public async Task<IEnumerable<Speaker>?> GetSpeakersAsync(
-            [ScopedService] ApplicationDbContext dbContext,
+            [Service] ApplicationDbContext dbContext,
             SpeakerByIdDataLoader speakerById,
             CancellationToken cancellationToken)
         {

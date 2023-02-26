@@ -6,7 +6,7 @@ namespace ConferencePlanner.GraphQL
 {
     public class UseApplicationDbContextAttribute : ObjectFieldDescriptorAttribute
     {
-        public override void OnConfigure(
+        protected override void OnConfigure(
             IDescriptorContext context,
             IObjectFieldDescriptor descriptor,
             MemberInfo member)

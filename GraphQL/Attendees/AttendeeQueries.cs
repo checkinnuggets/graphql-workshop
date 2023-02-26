@@ -1,15 +1,16 @@
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
+using HotChocolate.Language;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(Name = "Query")]
+    [ExtendObjectType(OperationType.Query)]
     public class AttendeeQueries
     {
         [UseApplicationDbContext]
         [UsePaging]
         public IQueryable<Attendee> GetAttendees(
-            [ScopedService] ApplicationDbContext context) =>
+            [Service] ApplicationDbContext context) =>
             context.Attendees;
 
         public Task<Attendee> GetAttendeeByIdAsync(

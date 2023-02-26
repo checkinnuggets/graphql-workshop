@@ -1,9 +1,10 @@
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
+using HotChocolate.Language;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
-    [ExtendObjectType(Name = "Subscription")]
+    [ExtendObjectType(OperationType.Subscription)]
     public class SessionSubscriptions
     {
         [Subscribe]

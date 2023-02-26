@@ -38,7 +38,7 @@ namespace ConferencePlanner.GraphQL.Types
         {
             public async Task<IEnumerable<Speaker>> GetSpeakersAsync(
                 Session session,
-                [ScopedService] ApplicationDbContext dbContext,
+                [Service] ApplicationDbContext dbContext,
                 SpeakerByIdDataLoader speakerById,
                 CancellationToken cancellationToken)
             {
@@ -53,7 +53,7 @@ namespace ConferencePlanner.GraphQL.Types
 
             public async Task<IEnumerable<Attendee>> GetAttendeesAsync(
                 Session session,
-                [ScopedService] ApplicationDbContext dbContext,
+                [Service] ApplicationDbContext dbContext,
                 AttendeeByIdDataLoader attendeeById,
                 CancellationToken cancellationToken)
             {

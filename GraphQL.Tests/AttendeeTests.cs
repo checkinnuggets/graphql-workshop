@@ -28,7 +28,7 @@ namespace GraphQL.Tests
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport()
+                .AddGlobalObjectIdentification()
                 .BuildSchemaAsync();
 
             // assert
@@ -51,7 +51,7 @@ namespace GraphQL.Tests
                 .AddType<SessionType>()
                 .AddType<SpeakerType>()
                 .AddType<TrackType>()
-                .EnableRelaySupport()
+                .AddGlobalObjectIdentification()
                 .BuildRequestExecutorAsync();
 
             // act

@@ -24,7 +24,7 @@ namespace ConferencePlanner.GraphQL.Types
         {
             public async Task<IEnumerable<Session>> GetSessionsAsync(
                 Attendee attendee,
-                [ScopedService] ApplicationDbContext dbContext,
+                [Service] ApplicationDbContext dbContext,
                 SessionByIdDataLoader sessionById,
                 CancellationToken cancellationToken)
             {

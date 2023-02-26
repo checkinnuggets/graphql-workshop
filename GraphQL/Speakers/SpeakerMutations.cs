@@ -9,7 +9,7 @@ namespace ConferencePlanner.GraphQL.Speakers
         [UseApplicationDbContext]
         public async Task<AddSpeakerPayload> AddSpeakerAsync(
             AddSpeakerInput input,
-            [ScopedService] ApplicationDbContext context)
+            [Service] ApplicationDbContext context)
         {
             var speaker = new Speaker
             {

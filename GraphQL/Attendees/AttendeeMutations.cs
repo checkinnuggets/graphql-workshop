@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
+using HotChocolate.Language;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(Name = "Mutation")]
+    [ExtendObjectType(OperationType.Mutation)]
     public class AttendeeMutations
     {
         [UseApplicationDbContext]
         public async Task<RegisterAttendeePayload> RegisterAttendeeAsync(
             RegisterAttendeeInput input,
-            [ScopedService] ApplicationDbContext context,
+            [Service] ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
             var attendee = new Attendee
@@ -31,7 +32,7 @@ namespace ConferencePlanner.GraphQL.Attendees
         [UseApplicationDbContext]
         public async Task<CheckInAttendeePayload> CheckInAttendeeAsync(
             CheckInAttendeeInput input,
-            [ScopedService] ApplicationDbContext context,
+            [Service] ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
             Attendee attendee = await context.Attendees.FirstOrDefaultAsync(

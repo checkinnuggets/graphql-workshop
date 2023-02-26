@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.AspNetCore" Version="12.16.0" />
-    <PackageReference Include="HotChocolate.Data" Version="12.16.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.12" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">
+    <PackageReference Include="HotChocolate.AspNetCore" Version="13.0.5" />
+    <PackageReference Include="HotChocolate.Data" Version="13.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
