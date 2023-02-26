@@ -1,0 +1,17 @@
+query GetNextTrack {
+  tracks(first: 1, after: "MA==") {
+    edges {
+      node {
+        id
+        name
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}

@@ -1,0 +1,6 @@
+subscription {
+  onSessionScheduled {
+    title
+    startTime
+  }
+}

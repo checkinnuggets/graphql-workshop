@@ -1,0 +1,8 @@
+subscription OnAttendeeCheckedIn {
+  onAttendeeCheckedIn(sessionId: "U2Vzc2lvbgppMQ==") {
+    checkInCount
+    attendee {
+      userName
+    }
+  }
+}

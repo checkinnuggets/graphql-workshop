@@ -1,0 +1,8 @@
+query GetSpecificSpeakersById {
+  a: speakerById(id: "insertFirstIdHere") {
+    name
+  }
+  b: speakerById(id: "insertAnotherIdHere") {
+    name
+  }
+}

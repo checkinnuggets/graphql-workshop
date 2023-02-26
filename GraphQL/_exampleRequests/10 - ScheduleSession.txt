@@ -1,0 +1,14 @@
+mutation ScheduleSession {
+  scheduleSession(
+    input: {
+      sessionId: "U2Vzc2lvbgppMQ=="
+      trackId: "VHJhY2sKaTE="
+      startTime: "2020-08-01T16:00"
+      endTime: "2020-08-01T17:00"
+    }
+  ) {
+    session {
+      title
+    }
+  }
+}

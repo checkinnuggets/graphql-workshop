@@ -1,0 +1,11 @@
+mutation AddSession {
+  addSession(input: {
+    title: "Working with Hot Chocolate"
+    abstract: "An introduction to the Hot Chocolate library."
+    speakerIds: [1]
+  }) {
+    session {
+      id
+    }
+  }
+}

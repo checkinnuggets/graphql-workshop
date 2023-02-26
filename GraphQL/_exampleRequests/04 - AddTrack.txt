@@ -1,0 +1,9 @@
+mutation AddTrack {
+  addTrack(input: {
+    name: "GraphQL for .NET Developers" 
+  }) {
+    track {
+      id
+    }
+  }
+}

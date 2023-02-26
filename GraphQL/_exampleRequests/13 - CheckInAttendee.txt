@@ -1,0 +1,12 @@
+mutation CheckInAttendee {
+  checkInAttendee(
+    input: { attendeeId: 1, sessionId: 1 }
+  ) {
+    attendee {
+      userName
+    }
+    session {
+      title
+    }
+  }
+}

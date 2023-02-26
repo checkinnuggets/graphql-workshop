@@ -1,0 +1,8 @@
+query ListSpeakers {
+  speakers {
+    nodes{
+      id
+      name
+    }
+  }
+}

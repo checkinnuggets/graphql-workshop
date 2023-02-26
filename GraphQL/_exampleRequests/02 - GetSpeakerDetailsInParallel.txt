@@ -1,0 +1,20 @@
+query GetSpeakerDetailsInParallel {
+  a: speakers {
+    nodes{
+      id
+      name
+    }
+  }
+  b: speakers {
+    nodes{
+      name
+      bio
+    }
+  }
+  c: speakers {
+    nodes{
+      name
+      bio
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation RegisterAttendee {
+  registerAttendee(
+    input: {
+      emailAddress: "michael@chillicream.com"
+      firstName: "michael"
+      lastName: "staib"
+      userName: "michael"
+    }
+  ) {
+    attendee {
+      id
+    }
+  }
+}
