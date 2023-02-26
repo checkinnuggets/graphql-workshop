@@ -46,7 +46,7 @@ namespace ConferencePlanner.GraphQL.Types
                     .Where(s => s.Id == session.Id)
                     .Include(s => s.SessionSpeakers)
                     .SelectMany(s => s.SessionSpeakers.Select(t => t.SpeakerId))
-                    .ToArrayAsync();
+                    .ToArrayAsync(cancellationToken);
 
                 return await speakerById.LoadAsync(speakerIds, cancellationToken);
             }
@@ -59,9 +59,9 @@ namespace ConferencePlanner.GraphQL.Types
             {
                 int[] attendeeIds = await dbContext.Sessions
                     .Where(s => s.Id == session.Id)
-                    .Include(session => session.SessionAttendees)
-                    .SelectMany(session => session.SessionAttendees.Select(t => t.AttendeeId))
-                    .ToArrayAsync();
+                    .Include(s => s.SessionAttendees)
+                    .SelectMany(s => s.SessionAttendees.Select(t => t.AttendeeId))
+                    .ToArrayAsync(cancellationToken);
 
                 return await attendeeById.LoadAsync(attendeeIds, cancellationToken);
             }

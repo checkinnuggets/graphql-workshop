@@ -6,7 +6,7 @@ namespace ConferencePlanner.GraphQL.Attendees
 {
     public class CheckInAttendeePayload : AttendeePayloadBase
     {
-        private int? _sessionId;
+        private readonly int? _sessionId;
 
         public CheckInAttendeePayload(Attendee attendee, int sessionId)
             : base(attendee)

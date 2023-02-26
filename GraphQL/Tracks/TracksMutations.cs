@@ -1,3 +1,5 @@
+using ConferencePlanner.GraphQL.Attendees;
+using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 
 namespace ConferencePlanner.GraphQL.Tracks
@@ -25,7 +27,14 @@ namespace ConferencePlanner.GraphQL.Tracks
             [Service] ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            Track track = await context.Tracks.FindAsync(input.Id);
+            Track? track = await context.Tracks.FindAsync(input.Id);
+
+            if (track == null)
+            {
+                return new RenameTrackPayload(
+                    new UserError("Track not found.", "TRACK_NOT_FOUND"));
+            }
+
             track.Name = input.Name;
 
             await context.SaveChangesAsync(cancellationToken);

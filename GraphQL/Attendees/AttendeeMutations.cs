@@ -35,7 +35,7 @@ namespace ConferencePlanner.GraphQL.Attendees
             [Service] ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            Attendee attendee = await context.Attendees.FirstOrDefaultAsync(
+            Attendee? attendee = await context.Attendees.FirstOrDefaultAsync(
                 t => t.Id == input.AttendeeId, cancellationToken);
 
             if (attendee is null)
