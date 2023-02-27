@@ -56,4 +56,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapGraphQL();
 });
 
+// Apply migrations to initialise database
+using(var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
+
 app.Run();
