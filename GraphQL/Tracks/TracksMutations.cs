@@ -3,7 +3,7 @@ using ConferencePlanner.GraphQL.Data;
 
 namespace ConferencePlanner.GraphQL.Tracks
 {
-    [ExtendObjectType("Mutation")]
+    [MutationType]
     public class TrackMutations
     {
         public async Task<AddTrackPayload> AddTrackAsync(

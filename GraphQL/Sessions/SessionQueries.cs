@@ -4,7 +4,7 @@ using ConferencePlanner.GraphQL.Types;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
-    [ExtendObjectType("Query")]
+    [QueryType]
     public class SessionQueries
     {
         [UsePaging(typeof(NonNullType<SessionType>))]

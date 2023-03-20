@@ -1,10 +1,4 @@
-using ConferencePlanner.GraphQL.Attendees;
 using ConferencePlanner.GraphQL.Data;
-using ConferencePlanner.GraphQL.DataLoader;
-using ConferencePlanner.GraphQL.Sessions;
-using ConferencePlanner.GraphQL.Speakers;
-using ConferencePlanner.GraphQL.Tracks;
-using ConferencePlanner.GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,29 +15,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(DbContextOptions);
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
-    .AddQueryType(d => d.Name("Query"))
-        .AddTypeExtension<AttendeeQueries>()
-        .AddTypeExtension<SpeakerQueries>()
-        .AddTypeExtension<SessionQueries>()
-        .AddTypeExtension<TrackQueries>()
-    .AddMutationType(d => d.Name("Mutation"))
-        .AddTypeExtension<AttendeeMutations>()
-        .AddTypeExtension<SpeakerMutations>()
-        .AddTypeExtension<SessionMutations>()
-        .AddTypeExtension<TrackMutations>()
-    .AddSubscriptionType(d => d.Name("Subscription"))
-        .AddTypeExtension<AttendeeSubscriptions>()
-        .AddTypeExtension<SessionSubscriptions>()
-    .AddType<AttendeeType>()
-    .AddType<SessionType>()
-    .AddType<SpeakerType>()
-    .AddType<TrackType>()
+    .AddGraphQLTypes()
     .AddGlobalObjectIdentification()
     .AddFiltering()
     .AddSorting()
-    .AddInMemorySubscriptions()
-    .AddDataLoader<SpeakerByIdDataLoader>()
-    .AddDataLoader<SessionByIdDataLoader>();
+    .AddInMemorySubscriptions();
 
 var app = builder.Build();
 

@@ -4,7 +4,7 @@ using ConferencePlanner.GraphQL.DataLoader;
 
 namespace ConferencePlanner.GraphQL.Tracks
 {
-    [ExtendObjectType("Query")]
+    [QueryType]
     public class TrackQueries
     {
         [UsePaging]

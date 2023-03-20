@@ -1,10 +1,9 @@
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
-using HotChocolate.Language;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(OperationType.Query)]
+    [QueryType]
     public class AttendeeQueries
     {
         [UsePaging]

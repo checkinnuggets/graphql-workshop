@@ -3,7 +3,7 @@ using ConferencePlanner.GraphQL.DataLoader;
 
 namespace ConferencePlanner.GraphQL.Speakers
 {
-    [ExtendObjectType("Query")]
+    [QueryType]
     public class SpeakerQueries
     {
         [UsePaging]

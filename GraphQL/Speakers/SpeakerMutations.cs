@@ -3,7 +3,7 @@ using GraphQL.Speakers;
 
 namespace ConferencePlanner.GraphQL.Speakers
 {
-    [ExtendObjectType("Mutation")]
+    [MutationType]
     public class SpeakerMutations
     {
         public async Task<AddSpeakerPayload> AddSpeakerAsync(

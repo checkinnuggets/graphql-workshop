@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
-using HotChocolate.Language;
 using HotChocolate.Subscriptions;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(OperationType.Mutation)]
+    [MutationType]
     public class AttendeeMutations
     {
         public async Task<RegisterAttendeePayload> RegisterAttendeeAsync(

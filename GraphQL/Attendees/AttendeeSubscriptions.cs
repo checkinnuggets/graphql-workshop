@@ -4,7 +4,7 @@ using HotChocolate.Subscriptions;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
-    [ExtendObjectType(Name = "Subscription")]
+    [SubscriptionType]
     public class AttendeeSubscriptions
     {
         [Subscribe(With = nameof(SubscribeToOnAttendeeCheckedInAsync))]
