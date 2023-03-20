@@ -39,7 +39,7 @@ namespace ConferencePlanner.GraphQL.Sessions
                 return null;
             }
 
-            int[] speakerIds = await dbContext.Sessions
+            var speakerIds = await dbContext.Sessions
                 .Where(s => s.Id == Session.Id)
                 .Include(s => s.SessionSpeakers)
                 .SelectMany(s => s.SessionSpeakers.Select(t => t.SpeakerId))

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 
-void DbContextOptions(DbContextOptionsBuilder options)
+static void DbContextOptions (DbContextOptionsBuilder options)
 {
     options.UseSqlite("Data Source=conferences.db");
     options.EnableSensitiveDataLogging();
@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(DbContextOptions);
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
-    .AddGraphQLTypes()
+    .AddGraphQLTypes()                          // Auto-generation from HotChocolate.Analyzers package.  Name will typically be 'Add{ProjectName}Types()'.
     .AddGlobalObjectIdentification()
     .AddFiltering()
     .AddSorting()

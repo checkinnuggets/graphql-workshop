@@ -34,7 +34,7 @@ namespace ConferencePlanner.GraphQL.Types
                 SessionByIdDataLoader sessionById,
                 CancellationToken cancellationToken)
             {
-                int[] sessionIds = await dbContext.Sessions
+                var sessionIds = await dbContext.Sessions
                     .Where(t => t.Id == track.Id)
                     .Select(t => t.Id)
                     .ToArrayAsync(cancellationToken);

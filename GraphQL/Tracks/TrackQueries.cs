@@ -19,7 +19,7 @@ namespace ConferencePlanner.GraphQL.Tracks
             ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            return context.Tracks.FirstAsync(t => t.Name == name);
+            return context.Tracks.FirstAsync(t => t.Name == name, cancellationToken);
         }
 
         public async Task<IEnumerable<Track>> GetTrackByNamesAsync(
@@ -27,7 +27,7 @@ namespace ConferencePlanner.GraphQL.Tracks
             ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            return await context.Tracks.Where(t => names.Contains(t.Name)).ToListAsync();
+            return await context.Tracks.Where(t => names.Contains(t.Name)).ToListAsync(cancellationToken);
         }
 
         public Task<Track> GetTrackByIdAsync(

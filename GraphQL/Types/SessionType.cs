@@ -42,7 +42,7 @@ namespace ConferencePlanner.GraphQL.Types
                 SpeakerByIdDataLoader speakerById,
                 CancellationToken cancellationToken)
             {
-                int[] speakerIds = await dbContext.Sessions
+                var speakerIds = await dbContext.Sessions
                     .Where(s => s.Id == session.Id)
                     .Include(s => s.SessionSpeakers)
                     .SelectMany(s => s.SessionSpeakers.Select(t => t.SpeakerId))
@@ -57,7 +57,7 @@ namespace ConferencePlanner.GraphQL.Types
                 AttendeeByIdDataLoader attendeeById,
                 CancellationToken cancellationToken)
             {
-                int[] attendeeIds = await dbContext.Sessions
+                var attendeeIds = await dbContext.Sessions
                     .Where(s => s.Id == session.Id)
                     .Include(s => s.SessionAttendees)
                     .SelectMany(s => s.SessionAttendees.Select(t => t.AttendeeId))

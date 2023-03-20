@@ -24,7 +24,7 @@ namespace ConferencePlanner.GraphQL.Tracks
             ApplicationDbContext context,
             CancellationToken cancellationToken)
         {
-            Track? track = await context.Tracks.FindAsync(input.Id);
+            var track = await context.Tracks.FindAsync(input.Id);
 
             if (track == null)
             {

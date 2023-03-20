@@ -16,7 +16,7 @@ namespace GraphQL.Tests
         {
             // arrange
             // act
-            ISchema schema = await new ServiceCollection()
+            var schema = await new ServiceCollection()
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
@@ -39,7 +39,7 @@ namespace GraphQL.Tests
         public async Task RegisterAttendee()
         {
             // arrange
-            IRequestExecutor executor = await new ServiceCollection()
+            var executor = await new ServiceCollection()
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
@@ -55,7 +55,7 @@ namespace GraphQL.Tests
                 .BuildRequestExecutorAsync();
 
             // act
-            IExecutionResult result = await executor.ExecuteAsync(@"
+            var result = await executor.ExecuteAsync(@"
         mutation RegisterAttendee {
             registerAttendee(
                 input: {

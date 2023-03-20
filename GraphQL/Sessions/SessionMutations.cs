@@ -30,7 +30,7 @@ namespace ConferencePlanner.GraphQL.Sessions
                 Abstract = input.Abstract,
             };
 
-            foreach (int speakerId in input.SpeakerIds)
+            foreach (var speakerId in input.SpeakerIds)
             {
                 session.SessionSpeakers.Add(new SessionSpeaker
                 {
@@ -56,7 +56,7 @@ namespace ConferencePlanner.GraphQL.Sessions
                     new UserError("endTime has to be larger than startTime.", "END_TIME_INVALID"));
             }
 
-            Session? session = await context.Sessions.FindAsync(input.SessionId);
+            var session = await context.Sessions.FindAsync(input.SessionId);
 
             if (session is null)
             {
