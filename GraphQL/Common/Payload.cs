@@ -1,16 +1,11 @@
-namespace ConferencePlanner.GraphQL.Common
+namespace ConferencePlanner.GraphQL.Common;
+
+public abstract class Payload
 {
-    public abstract class Payload
+    protected Payload(IReadOnlyList<UserError>? errors = null)
     {
-        protected Payload(IReadOnlyList<UserError>? errors = null)
-        {
-            Errors = errors;
-        }
-
-        public IReadOnlyList<UserError>? Errors { get; }
+        Errors = errors;
     }
-}
 
-namespace ConferencePlanner.GraphQL.Common
-{
+    public IReadOnlyList<UserError>? Errors { get; }
 }

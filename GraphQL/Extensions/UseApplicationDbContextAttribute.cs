@@ -2,16 +2,15 @@ using System.Reflection;
 using ConferencePlanner.GraphQL.Data;
 using HotChocolate.Types.Descriptors;
 
-namespace ConferencePlanner.GraphQL
+namespace ConferencePlanner.GraphQL.Extensions;
+
+public class UseApplicationDbContextAttribute : ObjectFieldDescriptorAttribute
 {
-    public class UseApplicationDbContextAttribute : ObjectFieldDescriptorAttribute
+    protected override void OnConfigure(
+        IDescriptorContext context,
+        IObjectFieldDescriptor descriptor,
+        MemberInfo member)
     {
-        protected override void OnConfigure(
-            IDescriptorContext context,
-            IObjectFieldDescriptor descriptor,
-            MemberInfo member)
-        {
-            descriptor.UseDbContext<ApplicationDbContext>();
-        }
+        descriptor.UseDbContext<ApplicationDbContext>();
     }
 }

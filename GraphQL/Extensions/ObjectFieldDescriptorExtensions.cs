@@ -1,22 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace ConferencePlanner.GraphQL.Extensions;
 
-namespace ConferencePlanner.GraphQL
+public static class ObjectFieldDescriptorExtensions
 {
-    public static class ObjectFieldDescriptorExtensions
+
+    public static IObjectFieldDescriptor UseUpperCase(
+        this IObjectFieldDescriptor descriptor)
     {
-
-        public static IObjectFieldDescriptor UseUpperCase(
-            this IObjectFieldDescriptor descriptor)
+        return descriptor.Use(next => async context =>
         {
-            return descriptor.Use(next => async context =>
-            {
-                await next(context);
+            await next(context);
 
-                if (context.Result is string s)
-                {
-                    context.Result = s.ToUpperInvariant();
-                }
-            });
-        }
+            if (context.Result is string s)
+            {
+                context.Result = s.ToUpperInvariant();
+            }
+        });
     }
 }

@@ -6,41 +6,41 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Snapshooter.Xunit;
 
-namespace GraphQL.Tests
+namespace GraphQL.Tests;
+
+public class AttendeeTests
 {
-    public class AttendeeTests
+    [Fact]
+    public async Task Attendee_Schema_Changed()
     {
-        [Fact]
-        public async Task Attendee_Schema_Changed()
-        {
-            // arrange
-            // act
-            var schema = await new ServiceCollection()
-                .AddPooledDbContextFactory<ApplicationDbContext>(
-                    options => options.UseInMemoryDatabase("Data Source=conferences.db")
-                )
-                .AddGraphQL()
-                .SetupApplicationGraphQLServer()
-                .BuildSchemaAsync();
+        // arrange
+        // act
+        var schema = await new ServiceCollection()
+            .AddPooledDbContextFactory<ApplicationDbContext>(
+                options => options.UseInMemoryDatabase("Data Source=conferences.db")
+            )
+            .AddGraphQL()
+            .SetupApplicationGraphQLServer()
+            .BuildSchemaAsync();
 
-            // assert
-            schema.Print().MatchSnapshot();
-        }
+        // assert
+        schema.Print().MatchSnapshot();
+    }
 
-        [Fact]
-        public async Task RegisterAttendee()
-        {
-            // arrange
-            var executor = await new ServiceCollection()
-                .AddPooledDbContextFactory<ApplicationDbContext>(
-                    options => options.UseInMemoryDatabase("Data Source=conferences.db")
-                )
-                .AddGraphQL()
-                .SetupApplicationGraphQLServer()
-                .BuildRequestExecutorAsync();
+    [Fact]
+    public async Task RegisterAttendee()
+    {
+        // arrange
+        var executor = await new ServiceCollection()
+            .AddPooledDbContextFactory<ApplicationDbContext>(
+                options => options.UseInMemoryDatabase("Data Source=conferences.db")
+            )
+            .AddGraphQL()
+            .SetupApplicationGraphQLServer()
+            .BuildRequestExecutorAsync();
 
-            // act
-            var result = await executor.ExecuteAsync(@"
+        // act
+        var result = await executor.ExecuteAsync(@"
         mutation RegisterAttendee {
             registerAttendee(
                 input: {
@@ -56,8 +56,7 @@ namespace GraphQL.Tests
             }
         }");
 
-            // assert
-            result.ToJson().MatchSnapshot();
-        }
+        // assert
+        result.ToJson().MatchSnapshot();
     }
 }
