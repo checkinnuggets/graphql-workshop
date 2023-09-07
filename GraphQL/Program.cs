@@ -1,8 +1,8 @@
+using ConferencePlanner.GraphQL;
 using ConferencePlanner.GraphQL.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 static void DbContextOptions (DbContextOptionsBuilder options)
 {
@@ -10,16 +10,11 @@ static void DbContextOptions (DbContextOptionsBuilder options)
     options.EnableSensitiveDataLogging();
 }
 
-builder.Services.AddPooledDbContextFactory<ApplicationDbContext>(DbContextOptions);
-builder.Services.AddDbContext<ApplicationDbContext>(DbContextOptions);
+builder.Services.AddDbContextPool<ApplicationDbContext>(DbContextOptions);
+
 builder.Services
     .AddGraphQLServer()
-    .RegisterDbContext<ApplicationDbContext>()
-    .AddGraphQLTypes()                          // Auto-generation from HotChocolate.Analyzers package.  Name will typically be 'Add{ProjectName}Types()'.
-    .AddGlobalObjectIdentification()
-    .AddFiltering()
-    .AddSorting()
-    .AddInMemorySubscriptions();
+    .SetupApplicationGraphQLServer();
 
 var app = builder.Build();
 
@@ -27,10 +22,8 @@ app.MapGet("/", () => "A GraphQL API");
 
 app.UseWebSockets();
 app.UseRouting();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGraphQL();
-});
+
+app.MapGraphQL();
 
 // Apply migrations to initialise database
 using(var scope = app.Services.CreateScope())

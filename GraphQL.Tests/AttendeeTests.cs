@@ -1,10 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using ConferencePlanner.GraphQL.Attendees;
+using ConferencePlanner.GraphQL;
 using ConferencePlanner.GraphQL.Data;
-using ConferencePlanner.GraphQL.Types;
 using HotChocolate;
 using HotChocolate.Execution;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Snapshooter.Xunit;
 
 namespace GraphQL.Tests
@@ -20,15 +19,7 @@ namespace GraphQL.Tests
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
-                .AddQueryType(d => d.Name("Query"))
-                .AddTypeExtension<AttendeeQueries>()
-                .AddMutationType(d => d.Name("Mutation"))
-                .AddTypeExtension<AttendeeMutations>()
-                .AddType<AttendeeType>()
-                .AddType<SessionType>()
-                .AddType<SpeakerType>()
-                .AddType<TrackType>()
-                .AddGlobalObjectIdentification()
+                .SetupApplicationGraphQLServer()
                 .BuildSchemaAsync();
 
             // assert
@@ -43,15 +34,7 @@ namespace GraphQL.Tests
                 .AddPooledDbContextFactory<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
-                .AddQueryType(d => d.Name("Query"))
-                .AddTypeExtension<AttendeeQueries>()
-                .AddMutationType(d => d.Name("Mutation"))
-                .AddTypeExtension<AttendeeMutations>()
-                .AddType<AttendeeType>()
-                .AddType<SessionType>()
-                .AddType<SpeakerType>()
-                .AddType<TrackType>()
-                .AddGlobalObjectIdentification()
+                .SetupApplicationGraphQLServer()
                 .BuildRequestExecutorAsync();
 
             // act
