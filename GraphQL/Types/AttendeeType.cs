@@ -11,7 +11,9 @@ public class AttendeeType : ObjectType<Attendee>
         descriptor
             .ImplementsNode()
             .IdField(t => t.Id)
-            .ResolveNode((ctx, id) => ctx.DataLoader<AttendeeByIdDataLoader>().LoadAsync(id, ctx.RequestAborted));
+            .ResolveNode(async (ctx, id)                                // Adding async-await here gets rid of the warning.
+                => await ctx.DataLoader<AttendeeByIdDataLoader>().LoadAsync(id, ctx.RequestAborted)   // Need to investigate this further.
+            );
 
         descriptor
             .Field(t => t.SessionsAttendees)
