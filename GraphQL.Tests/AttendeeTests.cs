@@ -20,7 +20,7 @@ public class AttendeeTests
                 options => options.UseInMemoryDatabase("Data Source=conferences.db")
             )
             .AddGraphQL()
-            .SetupApplicationGraphQLServer()
+            .ConfigureApplicationGraphQLServer()
             .BuildSchemaAsync();
 
         // assert
@@ -36,7 +36,7 @@ public class AttendeeTests
                 options => options.UseInMemoryDatabase("Data Source=conferences.db")
             )
             .AddGraphQL()
-            .SetupApplicationGraphQLServer()
+            .ConfigureApplicationGraphQLServer()
             .BuildRequestExecutorAsync();
 
         // act

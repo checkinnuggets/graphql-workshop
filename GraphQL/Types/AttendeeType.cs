@@ -16,14 +16,13 @@ public class AttendeeType : ObjectType<Attendee>
         descriptor
             .Field(t => t.SessionsAttendees)
             .ResolveWith<AttendeeResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
-            .UseDbContext<ApplicationDbContext>()
             .Name("sessions");
     }
 
     private class AttendeeResolvers
     {
         public async Task<IEnumerable<Session>> GetSessionsAsync(
-            Attendee attendee,
+            [Parent] Attendee attendee,
             ApplicationDbContext dbContext,
             SessionByIdDataLoader sessionById,
             CancellationToken cancellationToken)

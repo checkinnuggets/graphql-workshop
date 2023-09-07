@@ -16,13 +16,11 @@ public class SessionType : ObjectType<Session>
         descriptor
             .Field(t => t.SessionSpeakers)
             .ResolveWith<SessionResolvers>(t => t.GetSpeakersAsync(default!, default!, default!, default))
-            .UseDbContext<ApplicationDbContext>()
             .Name("speakers");
 
         descriptor
             .Field(t => t.SessionAttendees)
             .ResolveWith<SessionResolvers>(t => t.GetAttendeesAsync(default!, default!, default!, default))
-            .UseDbContext<ApplicationDbContext>()
             .Name("attendees");
 
         descriptor
@@ -37,7 +35,7 @@ public class SessionType : ObjectType<Session>
     private class SessionResolvers
     {
         public async Task<IEnumerable<Speaker>> GetSpeakersAsync(
-            Session session,
+            [Parent] Session session,
             ApplicationDbContext dbContext,
             SpeakerByIdDataLoader speakerById,
             CancellationToken cancellationToken)
@@ -52,7 +50,7 @@ public class SessionType : ObjectType<Session>
         }
 
         public async Task<IEnumerable<Attendee>> GetAttendeesAsync(
-            Session session,
+            [Parent] Session session,
             ApplicationDbContext dbContext,
             AttendeeByIdDataLoader attendeeById,
             CancellationToken cancellationToken)
@@ -67,7 +65,7 @@ public class SessionType : ObjectType<Session>
         }
 
         public async Task<Track?> GetTrackAsync(
-            Session session,
+            [Parent] Session session,
             TrackByIdDataLoader trackById,
             CancellationToken cancellationToken)
         {

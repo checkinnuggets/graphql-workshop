@@ -16,14 +16,13 @@ public class SpeakerType : ObjectType<Speaker>
         descriptor
             .Field(t => t.SessionSpeakers)
             .ResolveWith<SpeakerResolvers>(t => t.GetSessionsAsync(default!, default!, default!, default))
-            .UseDbContext<ApplicationDbContext>()
             .Name("sessions");
     }
 
     private class SpeakerResolvers
     {
         public async Task<IEnumerable<Session>> GetSessionsAsync(
-            Speaker speaker,
+            [Parent] Speaker speaker,
             ApplicationDbContext dbContext,
             SessionByIdDataLoader sessionById,
             CancellationToken cancellationToken)

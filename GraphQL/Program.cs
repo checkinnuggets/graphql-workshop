@@ -4,17 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-static void DbContextOptions (DbContextOptionsBuilder options)
+
+// A Guide to Entity Framework with Hot Chocolate 13
+// https://www.youtube.com/watch?v=BcTPIGLYB0I
+builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
 {
     options.UseSqlite("Data Source=conferences.db");
     options.EnableSensitiveDataLogging();
-}
-
-builder.Services.AddDbContextPool<ApplicationDbContext>(DbContextOptions);
+});
 
 builder.Services
     .AddGraphQLServer()
-    .SetupApplicationGraphQLServer();
+    .ConfigureApplicationGraphQLServer();
 
 var app = builder.Build();
 
