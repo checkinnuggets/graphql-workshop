@@ -17,7 +17,8 @@ namespace GraphQL.Tests
             // act
             var schema = await new ServiceCollection()
                 .AddPooledDbContextFactory<ApplicationDbContext>(
-                    options => options.UseInMemoryDatabase("Data Source=conferences.db"))
+                    options => options.UseInMemoryDatabase("Data Source=conferences.db")
+                )
                 .AddGraphQL()
                 .SetupApplicationGraphQLServer()
                 .BuildSchemaAsync();
@@ -32,7 +33,8 @@ namespace GraphQL.Tests
             // arrange
             var executor = await new ServiceCollection()
                 .AddPooledDbContextFactory<ApplicationDbContext>(
-                    options => options.UseInMemoryDatabase("Data Source=conferences.db"))
+                    options => options.UseInMemoryDatabase("Data Source=conferences.db")
+                )
                 .AddGraphQL()
                 .SetupApplicationGraphQLServer()
                 .BuildRequestExecutorAsync();
